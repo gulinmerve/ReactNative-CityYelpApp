@@ -13,7 +13,7 @@ const App = () => {
       <SafeAreaView>
         <View>
           <Text>
-            {/* Let's start 💥💥💥 */}
+            Let's start 💥💥💥
           </Text>
         </View>
       </SafeAreaView>
