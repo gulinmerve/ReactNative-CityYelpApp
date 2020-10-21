@@ -16,6 +16,11 @@ const App = () => {
             Let's start 💥💥💥
           </Text>
         </View>
+        <View>
+        <Text>
+            Project is loading 👌
+          </Text>
+        </View>
       </SafeAreaView>
 
   );
