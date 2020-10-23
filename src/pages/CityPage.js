@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -80,6 +80,22 @@ const cities = [
 // navigation={this.props.navigation}
 
 const CityPage = ({navigation}) => {
+  const [searchValue, setSearchValue] = useState("");
+  const [displayList, setDisplayList] = useState([]);
+
+useEffect(() => {
+  setDisplayList(cities)
+}, [])
+
+
+  useEffect(() => {
+    const filteredValue = cities.filter(item => {
+      const text = searchValue.toUpperCase();
+      const cityName = item.name.toUpperCase();
+      return cityName.indexOf(text) > -1;
+    }); setDisplayList(filteredValue);
+  },[searchValue])
+
   const renderCities = ({item}) => (
     <CityCard
       city={item}
@@ -87,18 +103,18 @@ const CityPage = ({navigation}) => {
     />
   );
 
-  const [inputText, setInputText] = useState('');
+  // const [inputText, setInputText] = useState('');
 
   return (
     <SafeAreaView>
       <View>
         <Text>Bir sehir seciniz</Text>
         <TextInput
-          value={inputText}
+          value={searchValue}
           placeholder="Bir sehir arayin.."
-          onChangeText={(searchText) => setInputText(searchText)}
+          onChangeText={(searchText) => setSearchValue(searchText)}
         />
-        <FlatList data={cities} renderItem={renderCities} />
+        <FlatList data={displayList} renderItem={renderCities} />
       </View>
     </SafeAreaView>
   );
