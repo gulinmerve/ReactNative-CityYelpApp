@@ -1,17 +1,42 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 
-// import { useNavigation } from '@react-navigation/native';
+const RestaurantCard = ({restaurant, onClick}) => {
+  return (
+    <TouchableOpacity
+    onPress= {() => onClick()}
+    >
+      <View style={styles.container}>
+        <Image style={styles.img} source={{uri: restaurant.image}} />
+        <Text style={styles.text}>{restaurant.name}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
-const CityCard = ({city, onClicked}) => {
+export default RestaurantCard;
 
-    return (
-            <TouchableOpacity
-                onPress = {() => onClicked()  }
-            >
-                <Text>{city.name}</Text>
-            </TouchableOpacity>
-    )
-}
-
-export default CityCard;
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F57C00',
+    margin: 10,
+    width: Dimensions.get('window').width * 0.9,
+  },
+  img: {
+    width: 350,
+    height: Dimensions.get('window').height / 3,
+    margin: 10,
+    resizeMode: 'cover',
+  },
+  text: {
+    color: 'white',
+    fontSize: 20,
+  },
+});
