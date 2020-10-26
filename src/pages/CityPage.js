@@ -5,7 +5,7 @@ import {
   Text,
   FlatList,
   TextInput,
-  TouchableOpacity,
+  StyleSheet
 } from 'react-native';
 
 import CityCard from '../components/CityCard';
@@ -108,16 +108,30 @@ useEffect(() => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Bir sehir seciniz</Text>
+        {/* <Text style = {styles.text} >Bir sehir seciniz</Text> */}
         <TextInput
+          style = {styles.inputText}
           value={searchValue}
-          placeholder="Bir sehir arayin.."
+          placeholder="Search a city.."
           onChangeText={(searchText) => setSearchValue(searchText)}
         />
-        <FlatList data={displayList} renderItem={renderCities} />
+        <FlatList 
+        keyExtractor={(item, index) => index.toString()}
+        data={displayList} renderItem={renderCities} />
       </View>
     </SafeAreaView>
   );
 };
 
 export default CityPage;
+
+const styles = StyleSheet.create({
+  text:{
+    fontSize:25,
+    margin:10,
+  },
+  inputText:{
+    marginLeft:10,
+    fontSize:20
+  }
+})
